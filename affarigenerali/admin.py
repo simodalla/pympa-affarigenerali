@@ -214,6 +214,8 @@ class PresenzaAdmin(admin.ModelAdmin):
     list_filter = (FilterContentTypeListFilter, 'presenza', 'persona',)
     search_fields = ('persona__cognome', 'persona__nome')
 
+    change_list_template = "admin/change_list_filter_sidebar.html"
+
     def has_add_permission(self, request):
         return False
 

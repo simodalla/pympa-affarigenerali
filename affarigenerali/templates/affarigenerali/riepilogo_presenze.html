@@ -2,8 +2,9 @@
 {% load i18n admin_urls admin_static admin_list %}
 
 {% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'affarigenerali/jquery-ui/jquery-ui.min.css' %}">
+    {% if not grappelli_active %}
+        <link rel="stylesheet" href="{% static 'affarigenerali/jquery-ui/jquery-ui.min.css' %}">
+    {% endif %}
     <link rel="stylesheet" href="{% static 'affarigenerali/css/riepilogo_presenze.css' %}">
     <link rel="stylesheet" media="print" href="{% static 'affarigenerali/css/print_riepilogo_presenze.css' %}">
 {% endblock %}
