@@ -14,6 +14,7 @@ table#result_list thead th {
     text-align: center;
     vertical-align: bottom;
     padding-bottom: 3px;
+    white-space: normal;
 }
 table#result_list thead th.presenze {
     width: 50px;
@@ -26,7 +27,6 @@ table#result_list tbody td {
     width: 100px;
     text-align: center;
     border: 1px solid #eee;
-    /*color: lig;*/
 }
 table#result_list tbody td.presenze {
     width: 50px;
