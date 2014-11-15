@@ -3,6 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import datetime
 
+from django.conf import settings
 from django.views.generic.edit import FormView
 
 from .models import Presenza, SessioneAssemblea, Mandato
@@ -43,6 +44,7 @@ class RiepiloghiPresenzeFormView(FormView):
         context = super(RiepiloghiPresenzeFormView, self).get_context_data(
             **kwargs)
         context['title'] = 'Riepiloghi Presenze'
+        context['grappelli_active'] = 'grappelli' in settings.INSTALLED_APPS
         try:
             mandato = Mandato.objects.get(pk=self.kwargs['mandato_pk'])
             context['mandato'] = mandato
