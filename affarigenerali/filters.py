@@ -14,14 +14,15 @@ class FilterContentTypeListFilter(SimpleListFilter):
     parent_class = ['Assemblea']
 
     def lookups(self, request, model_admin):
-        models_classes = pyclbr.readmodule('organigrammi.models')
+        # TODO: creare la stringa del nome dell'app tramite os.path piuttosto che farne l'hard cording
+        models_classes = pyclbr.readmodule('affarigenerali.models')
         parent_childs = [
             c.lower() for c in models_classes
             if set(self.parent_class).intersection(
                 set([o.name for o in models_classes[c].super
                      if isinstance(o, pyclbr.Class)]))]
         return tuple((ct.pk, ct.name) for ct in
-                     ContentType.objects.filter(app_label='organigrammi',
+                     ContentType.objects.filter(app_label='affarigenerali',
                                                 model__in=parent_childs))
 
     def queryset(self, request, queryset):
