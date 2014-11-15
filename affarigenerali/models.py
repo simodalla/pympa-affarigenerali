@@ -219,7 +219,7 @@ class SessioneAssemblea(TimeStampedModel):
         """
         :return: list of tuples (Presenza object, created) for all
                  assemblea.componenti
-        :rtype: list[(organigrammi.models.Presenza, boolean),]
+        :rtype: list[(affarigenerali.models.Presenza, boolean),]
         """
         assemblea = self.content_type.get_object_for_this_type(
             pk=self.object_id)
@@ -258,7 +258,7 @@ class Assemblea(TimeStampedModel):
         propperty
 
         :param persona:
-        :type persona: organigrammi.models.Persona
+        :type persona: affarigenerali.models.Persona
         :rtype: bool
         """
         return True if persona.pk in self.pks_componenti else False

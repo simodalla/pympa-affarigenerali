@@ -74,7 +74,7 @@ class MandatoAdmin(admin.ModelAdmin):
 
     def ld_azioni(self, obj):
         return '<a href="{}">Vedi riepiloghi presenze</a>'.format(
-            reverse('admin:organigrammi_presenza_visualizzazione_default',
+            reverse('admin:affarigenerali_presenza_visualizzazione_default',
                     kwargs={'mandato_pk': obj.pk}))
     ld_azioni.short_description = 'Sessioni'
     ld_azioni.allow_tags = True
@@ -129,7 +129,7 @@ class AssembleaAdminMixin():
 
     def ld_sessioni_assemblea(self, obj):
         """
-        :type obj: organigrammi.models.CommissioneConsigliare
+        :type obj: affarigenerali.models.CommissioneConsigliare
         """
         return '<br />'.join(
             ['{}&nbsp;<a href="{}">presenze'
@@ -141,7 +141,7 @@ class AssembleaAdminMixin():
 
     def ld_componenti(self, obj):
         """
-        :type obj: organigrammi.models.CommissioneConsigliare
+        :type obj: affarigenerali.models.CommissioneConsigliare
         """
         links = ['<a href="{}">{}</a>'.format(url, label)
                  for url, label in obj.ld_componenti]
@@ -230,6 +230,6 @@ class PresenzaAdmin(admin.ModelAdmin):
             url(r'^riepiloghi/(?P<mandato_pk>\d+)/$',
                 self.admin_site.admin_view(
                     RiepiloghiPresenzeFormView.as_view()),
-                name='organigrammi_presenza_visualizzazione_default')
+                name='affarigenerali_presenza_visualizzazione_default')
         )
         return my_urls + super(PresenzaAdmin, self).get_urls()
