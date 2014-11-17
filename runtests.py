@@ -11,12 +11,12 @@ try:
                 "ENGINE": "django.db.backends.sqlite3",
             }
         },
-        ROOT_URLCONF="affarigenerali.urls",
+        ROOT_URLCONF="pympa_affarigenerali.urls",
         INSTALLED_APPS=[
             "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
-            "affarigenerali",
+            "pympa_affarigenerali",
         ],
         SITE_ID=1,
         NOSE_ARGS=['-s'],

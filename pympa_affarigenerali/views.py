@@ -11,7 +11,7 @@ from .forms import FilterRiepiloghiPresenze
 
 
 class RiepiloghiPresenzeFormView(FormView):
-    template_name = "affarigenerali/riepilogo_presenze.html"
+    template_name = 'affarigenerali/riepilogo_presenze.html'
     form_class = FilterRiepiloghiPresenze
 
     def get_request_data(self):

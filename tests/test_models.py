@@ -12,7 +12,7 @@ import os
 import shutil
 import unittest
 
-from affarigenerali import models
+from pympa_affarigenerali import models
 
 
 class TestAffarigenerali(unittest.TestCase):

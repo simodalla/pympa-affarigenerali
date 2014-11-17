@@ -15,14 +15,14 @@ class FilterContentTypeListFilter(SimpleListFilter):
 
     def lookups(self, request, model_admin):
         # TODO: creare la stringa del nome dell'app tramite os.path piuttosto che farne l'hard cording
-        models_classes = pyclbr.readmodule('affarigenerali.models')
+        models_classes = pyclbr.readmodule('pympa_affarigenerali.models')
         parent_childs = [
             c.lower() for c in models_classes
             if set(self.parent_class).intersection(
                 set([o.name for o in models_classes[c].super
                      if isinstance(o, pyclbr.Class)]))]
         return tuple((ct.pk, ct.name) for ct in
-                     ContentType.objects.filter(app_label='affarigenerali',
+                     ContentType.objects.filter(app_label='pympa_affarigenerali',
                                                 model__in=parent_childs))
 
     def queryset(self, request, queryset):

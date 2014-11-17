@@ -13,40 +13,10 @@ from django.utils import timezone
 
 from model_utils.models import TimeStampedModel
 
+from pympa_core.models import RangeValiditaModel, Ente
+
 from .managers import (RangeValiditaManager, SessioneAssembleaManager,
                        PersonaManager, PresenzaManager)
-
-
-class RangeValiditaModel(models.Model):
-    inizio_validita = models.DateTimeField(verbose_name='Data inizio validita',
-                                           default=timezone.now)
-    fine_validita = models.DateTimeField(verbose_name='Data fine validita',
-                                         blank=True, null=True)
-
-    objects = RangeValiditaManager()
-
-    class Meta:
-        abstract = True
-
-    def is_valido(self):
-        from django.utils.timezone import now
-        if self.inizio_validita <= now() and (
-                not self.fine_validita or self.fine_validita >= now()):
-            return True
-        return False
-
-
-@python_2_unicode_compatible
-class Ente(TimeStampedModel, RangeValiditaModel):
-    titolo = models.CharField(max_length=200, unique=True)
-    ente_padre = models.ForeignKey('self', blank=True, null=True)
-
-    class Meta:
-        verbose_name = 'Ente'
-        verbose_name_plural = 'Enti'
-
-    def __str__(self):
-        return '{}'.format(self.titolo)
 
 
 @python_2_unicode_compatible
@@ -219,7 +189,7 @@ class SessioneAssemblea(TimeStampedModel):
         """
         :return: list of tuples (Presenza object, created) for all
                  assemblea.componenti
-        :rtype: list[(affarigenerali.models.Presenza, boolean),]
+        :rtype: list[(pympa_affarigenerali.models.Presenza, boolean),]
         """
         assemblea = self.content_type.get_object_for_this_type(
             pk=self.object_id)

@@ -4,14 +4,14 @@
 import os
 import sys
 
-import affarigenerali
+import pympa_affarigenerali
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = affarigenerali.__version__
+version = pympa_affarigenerali.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -32,7 +32,7 @@ setup(
     author_email='simodalla@gmail.com',
     url='https://github.com/simodalla/pympa-affarigenerali',
     packages=[
-        'affarigenerali',
+        'pympa_affarigenerali',
     ],
     include_package_data=True,
     install_requires=[
