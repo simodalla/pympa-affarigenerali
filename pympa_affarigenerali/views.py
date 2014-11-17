@@ -45,6 +45,7 @@ class RiepiloghiPresenzeFormView(FormView):
             **kwargs)
         context['title'] = 'Riepiloghi Presenze'
         context['grappelli_active'] = 'grappelli' in settings.INSTALLED_APPS
+        context['opts'] = Mandato._meta
         try:
             mandato = Mandato.objects.get(pk=self.kwargs['mandato_pk'])
             context['mandato'] = mandato
