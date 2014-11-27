@@ -5,12 +5,13 @@ import datetime
 
 from django.conf import settings
 from django.views.generic.edit import FormView
+from braces.views import StaffuserRequiredMixin
 
 from .models import Presenza, SessioneAssemblea, Mandato
 from .forms import FilterRiepiloghiPresenze
 
 
-class RiepiloghiPresenzeFormView(FormView):
+class RiepiloghiPresenzeFormView(StaffuserRequiredMixin, FormView):
     template_name = 'affarigenerali/riepilogo_presenze.html'
     form_class = FilterRiepiloghiPresenze
 
